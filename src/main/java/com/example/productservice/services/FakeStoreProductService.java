@@ -13,6 +13,7 @@ import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
 import javax.management.InstanceNotFoundException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +54,18 @@ public class FakeStoreProductService implements ProductService {
                 restTemplate.execute("https://fakestoreapi.com/products/"+id, HttpMethod.PUT, requestCallback, responseExtractor)
                 .getBody();
         return convertFakeStoreProductDtoToProduct(responseFakeStoreProductDto);
+    }
+
+    @Override
+    public Product deleteProduct(Long id) {
+        FakeStoreProductDto fakeStoreProductDto = new FakeStoreProductDto();
+        fakeStoreProductDto.setId(id);
+        RequestCallback requestCallback = restTemplate.httpEntityCallback(fakeStoreProductDto, FakeStoreProductDto.class);
+        ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor = restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
+        FakeStoreProductDto responseFakeStoreDto = restTemplate.execute("https://fakestoreapi.com/products/"+id, HttpMethod.DELETE, requestCallback, responseExtractor)
+                .getBody();
+
+        return convertFakeStoreProductDtoToProduct(responseFakeStoreDto);
     }
 
     private FakeStoreProductDto convertProductToFakeStoreProductDto(Product product) {

@@ -38,4 +38,9 @@ public class ProductController {
     public Product replaceProduct(@PathVariable("id") Long id, @RequestBody Product product) {
         return productService.replaceProduct(id, product);
     }
+
+    @DeleteMapping("/{id}")
+    public Product deleteProduct(@PathVariable("id") Long id) {
+        return productService.deleteProduct(id);
+    }
 }
