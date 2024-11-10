@@ -7,16 +7,12 @@ import com.example.productservice.models.Product;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 
-import javax.management.InstanceNotFoundException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class FakeStoreProductService implements ProductService {
@@ -75,7 +71,7 @@ public class FakeStoreProductService implements ProductService {
         FakeStoreProductDto fakeStoreProductDto = new FakeStoreProductDto();
         fakeStoreProductDto.setTitle(product.getTitle());
         fakeStoreProductDto.setPrice(product.getPrice());
-        fakeStoreProductDto.setDescription(product.getDesc());
+        fakeStoreProductDto.setDescription(product.getDescription());
         return fakeStoreProductDto;
     }
 
@@ -85,7 +81,7 @@ public class FakeStoreProductService implements ProductService {
         }
         Product product = new Product();
         product.setId(fakeStoreProductDto.getId());
-        product.setDesc(fakeStoreProductDto.getDescription());
+        product.setDescription(fakeStoreProductDto.getDescription());
         product.setPrice(fakeStoreProductDto.getPrice());
         product.setTitle(fakeStoreProductDto.getTitle());
 
