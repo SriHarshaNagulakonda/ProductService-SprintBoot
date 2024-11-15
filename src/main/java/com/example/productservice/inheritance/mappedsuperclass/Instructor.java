@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity(name="mps_instructor")
-public class Instructor extends User {
+public class    Instructor extends User {
     String specialization;
 
 }

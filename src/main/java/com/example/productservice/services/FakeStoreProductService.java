@@ -4,6 +4,7 @@ import com.example.productservice.dtos.FakeStoreProductDto;
 import com.example.productservice.exceptions.ProductNotFoundException;
 import com.example.productservice.models.Category;
 import com.example.productservice.models.Product;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+//@Primary
 public class FakeStoreProductService implements ProductService {
     RestTemplate restTemplate;
 
@@ -62,6 +64,11 @@ public class FakeStoreProductService implements ProductService {
                 .getBody();
 
         return convertFakeStoreProductDtoToProduct(responseFakeStoreDto);
+    }
+
+    @Override
+    public Product createProduct(Product product) {
+        return null;
     }
 
     private FakeStoreProductDto convertProductToFakeStoreProductDto(Product product) {
