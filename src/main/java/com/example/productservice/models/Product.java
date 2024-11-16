@@ -16,4 +16,5 @@ public class Product extends BaseModel {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     Category category;
+    int qty;
 }
